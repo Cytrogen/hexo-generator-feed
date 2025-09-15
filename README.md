@@ -1,20 +1,23 @@
+> **Note:** This is a personal fork of the official [`hexojs/hexo-generator-feed`](https://github.com/hexojs/hexo-generator-feed). It includes additional features for feed beautification and content processing.
+
 # hexo-generator-feed
 
-[![Build Status](https://github.com/hexojs/hexo-generator-feed/workflows/Tester/badge.svg)](https://github.com/hexojs/hexo-generator-feed/actions?query=workflow%3ATester)
-[![NPM version](https://badge.fury.io/js/hexo-generator-feed.svg)](https://www.npmjs.com/package/hexo-generator-feed)
-[![Coverage Status](https://img.shields.io/coveralls/hexojs/hexo-generator-feed.svg)](https://coveralls.io/r/hexojs/hexo-generator-feed?branch=master)
+Generate an Atom 1.0 or RSS 2.0 feed for your Hexo blog, with powerful added features.
 
-Generate Atom 1.0 or RSS 2.0 feed.
+## New Features in this Version
+
+* **XSLT Stylesheet for Browser Preview:** Apply a custom XSL stylesheet to your XML feed, transforming the raw XML into a beautiful, human-readable HTML preview when opened directly in a browser.
+* **Configurable Code Block Line Number Stripping:** Automatically remove line numbers from highlighted code blocks *only* within your feed content. This provides a clean, copy-paste-friendly experience in RSS readers without affecting the appearance of your main website.
 
 ## Install
 
+To install this specific version from your GitHub repository, run the following command in your Hexo project's root directory.
+
 ``` bash
-npm install hexo-generator-feed --save
+npm install Cytrogen/hexo-generator-feed --save
 ```
 
-- Hexo 4+: 2.x
-- Hexo 3: 1.x
-- Hexo 2: 0.x
+After installation, your `package.json` will contain a dependency pointing directly to your repository.
 
 ## Use
 
@@ -38,6 +41,9 @@ feed:
   icon: icon.png
   autodiscovery: true
   template:
+  # New options below
+  stylesheet: /feed.xsl
+  strip_code_line_numbers: true
 ```
 - **enable** - Enables or disables this plugin. Enabled by default.
 - **type** - Feed type. `atom` or `rss2`. Specify `['atom', 'rss2']` to output both types. (Default: `atom`)
@@ -82,3 +88,5 @@ feed:
     # atom will be generated using custom.xml
     # rss2 will be generated using the default template instead
   ```
+- **stylesheet** - (New Feature) Path to an XSL stylesheet to apply to the feed for in-browser presentation. The path should be relative to your site's root (e.g., place `feed.xsl` in your `source` directory).
+- **strip_code_line_numbers** - (New Feature) Set to `true` to automatically remove the line number table from highlighted code blocks within the feed's content. (Default: `false`)
